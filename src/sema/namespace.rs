@@ -850,10 +850,10 @@ impl Namespace {
                                 }
 
                                 if let pt::Mutability::Constant(loc) = m {
-                                    diagnostics.push(Diagnostic::warning(
-                                        *loc,
-                                        "'constant' is deprecated. Use 'view' instead".to_string(),
-                                    ));
+                                    // diagnostics.push(Diagnostic::warning(
+                                    //     *loc,
+                                    //     "'constant' is deprecated. Use 'view' instead".to_string(),
+                                    // ));
 
                                     mutability = Some(pt::Mutability::View(*loc));
                                 } else {
