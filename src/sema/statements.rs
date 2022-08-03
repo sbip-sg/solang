@@ -881,6 +881,29 @@ fn statement(
 
             Ok(reachable)
         }
+        pt::Statement::Throw(loc) => {
+            let id = pt::Identifier {
+                loc: pt::Loc::File(loc.file_no(), loc.start(), loc.start() + 6),
+                name: "throw".to_string(),
+            };
+
+            let expr = builtin::resolve_call(
+                &id.loc,
+                None,
+                &id.name,
+                &[],
+                context,
+                ns,
+                symtable,
+                diagnostics,
+            )?;
+
+            let reachable = expr.ty() != Type::Unreachable;
+
+            res.push(Statement::Expression(*loc, reachable, expr));
+
+            Ok(reachable)
+        }
         pt::Statement::RevertNamedArgs(loc, _, _) => {
             ns.diagnostics.push(Diagnostic::error(
                 *loc,

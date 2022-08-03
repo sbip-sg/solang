@@ -1034,6 +1034,7 @@ pub enum Builtin {
     Assert,
     Print,
     Revert,
+    Throw,
     Require,
     SelfDestruct,
     Keccak256,

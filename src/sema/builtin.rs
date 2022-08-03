@@ -29,7 +29,7 @@ pub struct Prototype {
 }
 
 // A list of all Solidity builtins functions
-static BUILTIN_FUNCTIONS: Lazy<[Prototype; 27]> = Lazy::new(|| {
+static BUILTIN_FUNCTIONS: Lazy<[Prototype; 28]> = Lazy::new(|| {
     [
         Prototype {
             builtin: Builtin::Assert,
@@ -80,6 +80,17 @@ static BUILTIN_FUNCTIONS: Lazy<[Prototype; 27]> = Lazy::new(|| {
             namespace: None,
             method: None,
             name: "revert",
+            params: vec![],
+            ret: vec![Type::Unreachable],
+            target: vec![],
+            doc: "Revert execution",
+            constant: false,
+        },
+        Prototype {
+            builtin: Builtin::Throw,
+            namespace: None,
+            method: None,
+            name: "throw",
             params: vec![],
             ret: vec![Type::Unreachable],
             target: vec![],

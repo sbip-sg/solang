@@ -746,6 +746,9 @@ NonIfStatement: Statement = {
     <l:@L> "break" <r:@R> ";" => {
         Statement::Break(Loc::File(file_no, l, r))
     },
+    <l:@L> "throw" <r:@R> ";" => {
+        Statement::Throw(Loc::File(file_no, l, r))
+    },
     <l:@L> "return" <r:@R> ";" => {
         Statement::Return(Loc::File(file_no, l, r), None)
     },
@@ -774,6 +777,7 @@ YulIdentifier: Identifier = {
     <l:@L> <n:identifier> <r:@R> => Identifier{loc: Loc::File(file_no, l, r), name: n.to_string()},
     <l:@L> "return" <r:@R> => Identifier{loc: Loc::File(file_no, l, r), name: "return".to_string()},
     <l:@L> "revert" <r:@R> => Identifier{loc: Loc::File(file_no, l, r), name: "revert".to_string()},
+    <l:@L> "throw" <r:@R> => Identifier{loc: Loc::File(file_no, l, r), name: "throw".to_string()},
     <l:@L> "bool" <r:@R> => Identifier{loc: Loc::File(file_no, l, r), name: "bool".to_string()},
     <l:@L> "address" <r:@L> => Identifier{loc: Loc::File(file_no, l, r), name: "address".to_string()},
     <l:@L> "byte" <r:@L> => Identifier{loc: Loc::File(file_no, l, r), name: "byte".to_string()},

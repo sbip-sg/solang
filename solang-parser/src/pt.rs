@@ -715,6 +715,7 @@ pub enum Statement {
     ),
     DoWhile(Loc, Box<Statement>, Expression),
     Continue(Loc),
+    Throw(Loc),
     Break(Loc),
     Return(Loc, Option<Expression>),
     Revert(Loc, Option<IdentifierPath>, Vec<Expression>),
@@ -833,6 +834,7 @@ impl CodeLocation for Statement {
             | Statement::For(loc, ..)
             | Statement::DoWhile(loc, ..)
             | Statement::Continue(loc)
+            | Statement::Throw(loc)
             | Statement::Break(loc)
             | Statement::Return(loc, ..)
             | Statement::Revert(loc, ..)

@@ -251,12 +251,12 @@ pub fn contract_function(
                 pt::FunctionTy::Constructor => pt::Visibility::Public(None),
                 pt::FunctionTy::Modifier => pt::Visibility::Internal(None),
                 _ => {
-                    ns.diagnostics.push(Diagnostic::error(
-                        func.loc,
-                        "no visibility specified".to_string(),
-                    ));
+                    // ns.diagnostics.push(Diagnostic::error(
+                    //     func.loc,
+                    //     "no visibility specified".to_string(),
+                    // ));
 
-                    success = false;
+                    // success = false;
                     // continue processing while assuming it's a public
                     pt::Visibility::Public(None)
                 }
