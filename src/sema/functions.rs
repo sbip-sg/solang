@@ -133,10 +133,10 @@ pub fn contract_function(
                 }
 
                 if let pt::Mutability::Constant(loc) = m {
-                    ns.diagnostics.push(Diagnostic::warning(
-                        *loc,
-                        "'constant' is deprecated. Use 'view' instead".to_string(),
-                    ));
+                    // ns.diagnostics.push(Diagnostic::warning(
+                    //     *loc,
+                    //     "'constant' is deprecated. Use 'view' instead".to_string(),
+                    // ));
 
                     mutability = Some(pt::Mutability::View(*loc));
                 } else {
@@ -670,10 +670,10 @@ pub fn function(
                 }
 
                 if let pt::Mutability::Constant(loc) = m {
-                    ns.diagnostics.push(Diagnostic::warning(
-                        *loc,
-                        "'constant' is deprecated. Use 'view' instead".to_string(),
-                    ));
+                    // ns.diagnostics.push(Diagnostic::warning(
+                    //     *loc,
+                    //     "'constant' is deprecated. Use 'view' instead".to_string(),
+                    // ));
 
                     mutability = Some(pt::Mutability::View(*loc));
                 } else {
