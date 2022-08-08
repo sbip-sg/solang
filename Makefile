@@ -12,7 +12,7 @@ release:
 	RUSTFLAGS='-L ${HOME}/llvm/llvm-solang/lib' \
 	CARGO_TARGET_DIR="./build" \
 	cargo build --release
-	mv build/release/solang ./solang -f
+	cp build/release/solang ./solang -f
 
 debug:
 	PATH='${HOME}/llvm/llvm-solang/bin:${PATH}' \
@@ -22,4 +22,13 @@ debug:
 	RUSTFLAGS='-L ${HOME}/llvm/llvm-solang/lib' \
 	CARGO_TARGET_DIR="./build" \
 	cargo build
-	mv build/debug/solang ./solang -f
+	cp build/debug/solang ./solang -f
+
+test:
+	PATH='${HOME}/llvm/llvm-solang/bin:${PATH}' \
+	LIBRARY_PATH='${HOME}/llvm/llvm-solang/lib' \
+	LD_LIBRARY_PATH='${HOME}/llvm/llvm-solang/lib' \
+	DYLD_LIBRARY_PATH='${HOME}/llvm/llvm-solang/lib' \
+	RUSTFLAGS='-L ${HOME}/llvm/llvm-solang/lib' \
+	CARGO_TARGET_DIR="./build" \
+	cargo test
