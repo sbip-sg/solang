@@ -142,7 +142,7 @@ contract Crowdsale {
 
 
 
-  function Crowdsale() {
+  constructor() {
 
     wallet = 0x667794B184E4494f8592302f098A889087a58728;
 
@@ -180,63 +180,63 @@ contract Crowdsale {
 
   // fallback function can be used to buy tokens
 
-  function () payable {
+  /* function () payable { */
 
-    buyTokens(msg.sender);
+  /*   buyTokens(msg.sender); */
 
-  }
+  /* } */
 
 
 
   // low level token purchase function
 
-  function buyTokens(address beneficiary) payable {
+  /* function buyTokens(address beneficiary) payable { */
 
-    require(beneficiary != 0x0);
+  /*   /\* require(beneficiary != 0x0); *\/ */
 
-    require(validPurchase());
-
-
-
-    uint256 weiAmount = msg.value;
+  /*   require(validPurchase()); */
 
 
 
-    // calculate token amount to be sent
-
-    uint256 tokens = (weiAmount/10**10) * 1300;
+  /*   uint256 weiAmount = msg.value; */
 
 
 
-    if(block.timestamp < startTime + 1*7*24*60* 1 minutes){
+  /*   // calculate token amount to be sent */
 
-      tokens += (tokens * 20) / 100;
-
-    }else if(block.timestamp < startTime + 2*7*24*60* 1 minutes){
-
-      tokens += (tokens * 10) / 100;
-
-    }else{
-
-      tokens += (tokens * 5) / 100;
-
-    }
+  /*   uint256 tokens = (weiAmount/10**10) * 1300; */
 
 
 
-    // update state
+  /*   if(block.timestamp < startTime + 1*7*24*60* 1 minutes){ */
 
-    weiRaised = weiRaised.add(weiAmount);
+  /*     tokens += (tokens * 20) / 100; */
+
+  /*   }else if(block.timestamp < startTime + 2*7*24*60* 1 minutes){ */
+
+  /*     tokens += (tokens * 10) / 100; */
+
+  /*   }else{ */
+
+  /*     tokens += (tokens * 5) / 100; */
+
+  /*   } */
 
 
 
-    tokenReward.transfer(beneficiary, tokens);
+  /*   // update state */
 
-    TokenPurchase(msg.sender, beneficiary, weiAmount, tokens);
+  /*   weiRaised = weiRaised.add(weiAmount); */
 
-    forwardFunds();
 
-  }
+
+  /*   tokenReward.transfer(beneficiary, tokens); */
+
+  /*   /\* TokenPurchase(msg.sender, beneficiary, weiAmount, tokens); *\/ */
+
+  /*   forwardFunds(); */
+
+  /* } */
 
 
 
@@ -244,17 +244,17 @@ contract Crowdsale {
 
   // override to create custom fund forwarding mechanisms
 
-  function forwardFunds() internal {
+  /* function forwardFunds() internal { */
 
-    // wallet.transfer(msg.value);
+  /*   // wallet.transfer(msg.value); */
 
-    if (!wallet.send(msg.value)) {
+  /*   if (!wallet.send(msg.value)) { */
 
-      throw;
+  /*     throw; */
 
-    }
+  /*   } */
 
-  }
+  /* } */
 
 
 

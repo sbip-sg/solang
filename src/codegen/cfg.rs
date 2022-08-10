@@ -1547,7 +1547,11 @@ fn function_cfg(
         .map(|stmt| stmt.reachable())
         .unwrap_or(true)
     {
-        let loc = func.body.last().unwrap().loc();
+        let loc_opt = func.body.last();
+        let e_loc = match loc_opt {
+            Some(loc) => loc.loc(),
+            None => pt::Loc::Codegen,
+        };
         // add implicit return
         cfg.add(
             &mut vartab,
@@ -1556,7 +1560,9 @@ fn function_cfg(
                     .symtable
                     .returns
                     .iter()
-                    .map(|pos| Expression::Variable(loc, func.symtable.vars[pos].ty.clone(), *pos))
+                    .map(|pos| {
+                        Expression::Variable(e_loc, func.symtable.vars[pos].ty.clone(), *pos)
+                    })
                     .collect::<Vec<_>>(),
             },
         );

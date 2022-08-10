@@ -1577,6 +1577,7 @@ pub fn process_side_effects_expressions(
             // for they return no value. They should not bother the unused variable elimination.
             | ast::Builtin::PayableTransfer
             | ast::Builtin::Revert
+                | ast::Builtin::Throw
             | ast::Builtin::Require
             | ast::Builtin::SelfDestruct
             | ast::Builtin::WriteInt8

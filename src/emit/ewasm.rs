@@ -100,6 +100,7 @@ impl EwasmTarget {
             "storageLoad",
             "finish",
             "revert",
+            "throw",
             "codeCopy",
             "getCodeSize",
             "printMem",
@@ -594,6 +595,21 @@ impl EwasmTarget {
             .module
             .add_function(
                 "revert",
+                void_ty.fn_type(
+                    &[
+                        u8_ptr_ty.into(), // data_ptr
+                        u32_ty.into(),    // data_len
+                    ],
+                    false,
+                ),
+                Some(Linkage::External),
+            )
+            .add_attribute(AttributeLoc::Function, noreturn);
+
+        binary
+            .module
+            .add_function(
+                "throw",
                 void_ty.fn_type(
                     &[
                         u8_ptr_ty.into(), // data_ptr
