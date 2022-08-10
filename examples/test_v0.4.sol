@@ -276,7 +276,7 @@ contract Crowdsale {
 
   function hasEnded() public constant returns (bool) {
 
-    return now > endTime;
+    return block.timestamp > endTime;
 
   }
 

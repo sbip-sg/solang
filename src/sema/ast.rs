@@ -1026,6 +1026,7 @@ pub enum StringLocation<T> {
 pub enum Builtin {
     GetAddress,
     Balance,
+    Now,
     PayableSend,
     PayableTransfer,
     ArrayPush,
