@@ -670,7 +670,8 @@ pub fn expression(
         ast::Expression::Builtin(_, _, ast::Builtin::Require, args) => {
             require(cfg, args, contract_no, func, ns, vartab, opt)
         }
-        ast::Expression::Builtin(_, _, ast::Builtin::Revert, args) => {
+        ast::Expression::Builtin(_, _, ast::Builtin::Revert, args)
+        | ast::Expression::Builtin(_, _, ast::Builtin::Throw, args) => {
             revert(args, cfg, contract_no, func, ns, vartab, opt)
         }
         ast::Expression::Builtin(_, _, ast::Builtin::SelfDestruct, args) => {

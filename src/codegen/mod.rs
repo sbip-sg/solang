@@ -1295,7 +1295,7 @@ impl From<&ast::Builtin> for Builtin {
             ast::Builtin::WriteUint64LE => Builtin::WriteUint64LE,
             ast::Builtin::WriteUint128LE => Builtin::WriteUint128LE,
             ast::Builtin::WriteUint256LE => Builtin::WriteUint256LE,
-            _ => panic!("Builtin should not be in the cfg"),
+            _ => panic!("Builtin should not be in the cfg, {:?}", ast_builtin),
         }
     }
 }
