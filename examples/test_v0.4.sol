@@ -168,7 +168,7 @@ contract Crowdsale {
 
     if (msg.sender != wallet || started) throw;
 
-    startTime = now + delay * 1 minutes;
+    startTime = block.timestamp + delay * 1 minutes;
 
     endTime = startTime + 30 * 24 * 60 * 1 minutes;
 
@@ -208,11 +208,11 @@ contract Crowdsale {
 
 
 
-    if(now < startTime + 1*7*24*60* 1 minutes){
+    if(block.timestamp < startTime + 1*7*24*60* 1 minutes){
 
       tokens += (tokens * 20) / 100;
 
-    }else if(now < startTime + 2*7*24*60* 1 minutes){
+    }else if(block.timestamp < startTime + 2*7*24*60* 1 minutes){
 
       tokens += (tokens * 10) / 100;
 
@@ -262,7 +262,7 @@ contract Crowdsale {
 
   function validPurchase() internal constant returns (bool) {
 
-    bool withinPeriod = now >= startTime && now <= endTime;
+      bool withinPeriod = block.timestamp >= startTime && now <= endTime;
 
     bool nonZeroPurchase = msg.value != 0;
 

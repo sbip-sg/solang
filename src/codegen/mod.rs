@@ -1220,6 +1220,8 @@ pub enum Builtin {
     Signature,
     SignatureVerify,
     Timestamp,
+    Throw,
+    Now,
     TombstoneDeposit,
     Value,
     WriteAddress,
@@ -1281,6 +1283,8 @@ impl From<&ast::Builtin> for Builtin {
             ast::Builtin::Signature => Builtin::Signature,
             ast::Builtin::SignatureVerify => Builtin::SignatureVerify,
             ast::Builtin::Timestamp => Builtin::Timestamp,
+            ast::Builtin::Now => Builtin::Now,
+            ast::Builtin::Throw => Builtin::Throw,
             ast::Builtin::TombstoneDeposit => Builtin::TombstoneDeposit,
             ast::Builtin::Value => Builtin::Value,
             ast::Builtin::WriteAddress => Builtin::WriteAddress,
@@ -1295,7 +1299,7 @@ impl From<&ast::Builtin> for Builtin {
             ast::Builtin::WriteUint64LE => Builtin::WriteUint64LE,
             ast::Builtin::WriteUint128LE => Builtin::WriteUint128LE,
             ast::Builtin::WriteUint256LE => Builtin::WriteUint256LE,
-            _ => panic!("Builtin should not be in the cfg"),
+            _ => panic!("Builtin should not be in the cfg {:?}", ast_builtin),
         }
     }
 }

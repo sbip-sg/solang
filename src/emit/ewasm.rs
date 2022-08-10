@@ -1937,7 +1937,8 @@ impl<'a> TargetRuntime<'a> for EwasmTarget {
             codegen::Expression::Builtin(_, _, codegen::Builtin::GasLimit, _) => {
                 straight_call!("gas_limit", "getBlockGasLimit")
             }
-            codegen::Expression::Builtin(_, _, codegen::Builtin::Timestamp, _) => {
+            codegen::Expression::Builtin(_, _, codegen::Builtin::Timestamp, _)
+            | codegen::Expression::Builtin(_, _, codegen::Builtin::Now, _) => {
                 straight_call!("time_stamp", "getBlockTimestamp")
             }
             codegen::Expression::Builtin(_, _, codegen::Builtin::BlockDifficulty, _) => {
